@@ -1,0 +1,42 @@
+name: flutter_complete
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.0
+  flutter_localizations:
+    sdk: flutter
+
+  bloc: ^8.1.0
+  dio: ^4.0.6
+  equatable: ^2.0.5
+  intl: ^0.17.0
+  connectivity_plus: ^2.3.7
+  freezed_annotation: ^2.1.0
+  json_annotation: ^4.7.0
+  get_it: ^7.2.0
+  cached_network_image: ^3.2.2
+
+dev_dependencies:
+  bloc_test: ^9.1.0
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.2.0
+  very_good_analysis: ^2.4.0
+
+  freezed: ^2.1.1
+  build_runner: ^2.2.1
+  json_serializable: ^6.4.0
+
+dependency_overrides:
+  analyzer: ^5.1.0
+
+flutter:
+  uses-material-design: true
+  generate: true
