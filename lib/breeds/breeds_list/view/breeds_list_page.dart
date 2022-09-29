@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_complete/base/widgets/base_loadable_scaffold.dart';
 import 'package:flutter_complete/base/widgets/base_search_text_Field.dart';
 import 'package:flutter_complete/breeds/breeds_list/cubit/breeds_cubit.dart';
+import 'package:flutter_complete/extensions/context_extensions.dart';
 import 'package:flutter_complete/models/breed.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,6 +33,15 @@ class BreedsListPage extends StatelessWidget {
             );
           },
           builder: (ctx, breeds) {
+            if (breeds?.isEmpty ?? true) {
+              return Center(
+                child: Text(
+                  'No data for specific query',
+                  style: context.textTheme.subtitle1,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }
             return ListView.builder(
               itemCount: breeds!.length,
               itemBuilder: (ctx, idx) {

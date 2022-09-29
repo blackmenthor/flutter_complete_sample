@@ -26,6 +26,7 @@ class BaseSearchTextField extends StatefulWidget {
 
 class _BaseSearchTextFieldState extends State<BaseSearchTextField> {
 
+  late TextEditingController _textEditingController;
   late Debouncer _debouncer;
 
   @override
@@ -35,6 +36,7 @@ class _BaseSearchTextFieldState extends State<BaseSearchTextField> {
     _debouncer = Debouncer(
         milliseconds: widget.debounceDuration.inMilliseconds,
     );
+    _textEditingController = TextEditingController();
   }
 
   @override
@@ -42,13 +44,26 @@ class _BaseSearchTextFieldState extends State<BaseSearchTextField> {
     super.dispose();
 
     _debouncer.close();
+    _textEditingController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseTextField(
+      controller: _textEditingController,
       hint: widget.hint,
       label: widget.label,
+      suffixIcon: InkWell(
+        onTap: () {
+          _textEditingController.clear();
+          if (widget.onChanged != null) {
+            widget.onChanged!('');
+          }
+        },
+        child: const Icon(
+          Icons.close,
+        ),
+      ),
       onChanged: (query) => _debouncer.run(() {
         if (widget.onChanged != null) {
           widget.onChanged!(query);
