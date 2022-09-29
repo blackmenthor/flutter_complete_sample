@@ -5,12 +5,15 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:flutter/material.dart';
 import 'package:flutter_complete/app/app.dart';
 import 'package:flutter_complete/base/credentials.dart';
 import 'package:flutter_complete/bootstrap.dart';
 import 'package:flutter_complete/di/di.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   DependencyInjection.registerDependencies(env: Environment.prod);
 
   bootstrap(() => const App());

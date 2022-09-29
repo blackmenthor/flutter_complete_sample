@@ -20,9 +20,13 @@ BreedImage _$BreedImageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BreedImage {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get width => throw _privateConstructorUsedError;
+  @HiveField(2)
   int get height => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +40,11 @@ abstract class $BreedImageCopyWith<$Res> {
   factory $BreedImageCopyWith(
           BreedImage value, $Res Function(BreedImage) then) =
       _$BreedImageCopyWithImpl<$Res>;
-  $Res call({String id, int width, int height, String url});
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) int width,
+      @HiveField(2) int height,
+      @HiveField(3) String url});
 }
 
 /// @nodoc
@@ -82,7 +90,11 @@ abstract class _$$_BreedImageCopyWith<$Res>
           _$_BreedImage value, $Res Function(_$_BreedImage) then) =
       __$$_BreedImageCopyWithImpl<$Res>;
   @override
-  $Res call({String id, int width, int height, String url});
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) int width,
+      @HiveField(2) int height,
+      @HiveField(3) String url});
 }
 
 /// @nodoc
@@ -125,24 +137,29 @@ class __$$_BreedImageCopyWithImpl<$Res> extends _$BreedImageCopyWithImpl<$Res>
 
 /// @nodoc
 
+@HiveType(typeId: 1, adapterName: 'BreedImageDataAdapter')
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_BreedImage implements _BreedImage {
   const _$_BreedImage(
-      {required this.id,
-      required this.width,
-      required this.height,
-      required this.url});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.width,
+      @HiveField(2) required this.height,
+      @HiveField(3) required this.url});
 
   factory _$_BreedImage.fromJson(Map<String, dynamic> json) =>
       _$$_BreedImageFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final int width;
   @override
+  @HiveField(2)
   final int height;
   @override
+  @HiveField(3)
   final String url;
 
   @override
@@ -185,21 +202,25 @@ class _$_BreedImage implements _BreedImage {
 
 abstract class _BreedImage implements BreedImage {
   const factory _BreedImage(
-      {required final String id,
-      required final int width,
-      required final int height,
-      required final String url}) = _$_BreedImage;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final int width,
+      @HiveField(2) required final int height,
+      @HiveField(3) required final String url}) = _$_BreedImage;
 
   factory _BreedImage.fromJson(Map<String, dynamic> json) =
       _$_BreedImage.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   int get width;
   @override
+  @HiveField(2)
   int get height;
   @override
+  @HiveField(3)
   String get url;
   @override
   @JsonKey(ignore: true)

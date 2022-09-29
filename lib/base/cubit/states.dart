@@ -18,6 +18,6 @@ class BaseCubitLoadedState<T> extends BaseCubitState {
       required this.data,
   });
 
-  final T data;
+  final T? data;
 
 }

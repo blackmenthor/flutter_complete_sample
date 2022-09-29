@@ -16,10 +16,10 @@ abstract class BaseCubit<T> extends Cubit<BaseCubitState> {
   Future<void> kickOff() async {
     emit(BaseCubitLoadingState());
     try {
-      final value = await loadData();
-      emit(BaseCubitLoadedState<T>(
-        data: value,
-      ));
+      final resp = await loadData();
+      emit(
+        BaseCubitLoadedState(data: resp),
+      );
     } on AppException catch (ex) {
       gotError(ex);
       emit(BaseCubitErrorState(error: ex));
@@ -31,6 +31,6 @@ abstract class BaseCubit<T> extends Cubit<BaseCubitState> {
     }
   }
 
-  Future<T> loadData();
+  Future<T?> loadData();
 
 }

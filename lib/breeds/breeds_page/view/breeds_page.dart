@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete/base/widgets/base_scaffold.dart';
-import 'package:flutter_complete/extensions/context_extensions.dart';
 import 'package:flutter_complete/models/breed.dart';
+import 'package:flutter_complete/extensions/context_extensions.dart';
 
 class BreedsPage extends StatelessWidget {
   const BreedsPage({

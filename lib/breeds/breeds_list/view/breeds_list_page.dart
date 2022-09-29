@@ -33,7 +33,7 @@ class BreedsListPage extends StatelessWidget {
           },
           builder: (ctx, breeds) {
             return ListView.builder(
-              itemCount: breeds.length,
+              itemCount: breeds!.length,
               itemBuilder: (ctx, idx) {
                 final breed = breeds[idx];
 

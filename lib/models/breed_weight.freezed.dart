@@ -20,7 +20,9 @@ Weight _$WeightFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Weight {
+  @HiveField(0)
   String get imperial => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get metric => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -32,7 +34,7 @@ mixin _$Weight {
 abstract class $WeightCopyWith<$Res> {
   factory $WeightCopyWith(Weight value, $Res Function(Weight) then) =
       _$WeightCopyWithImpl<$Res>;
-  $Res call({String imperial, String metric});
+  $Res call({@HiveField(0) String imperial, @HiveField(1) String metric});
 }
 
 /// @nodoc
@@ -66,7 +68,7 @@ abstract class _$$_WeightCopyWith<$Res> implements $WeightCopyWith<$Res> {
   factory _$$_WeightCopyWith(_$_Weight value, $Res Function(_$_Weight) then) =
       __$$_WeightCopyWithImpl<$Res>;
   @override
-  $Res call({String imperial, String metric});
+  $Res call({@HiveField(0) String imperial, @HiveField(1) String metric});
 }
 
 /// @nodoc
@@ -98,16 +100,21 @@ class __$$_WeightCopyWithImpl<$Res> extends _$WeightCopyWithImpl<$Res>
 
 /// @nodoc
 
+@HiveType(typeId: 2, adapterName: 'WeightDataAdapter')
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_Weight implements _Weight {
-  const _$_Weight({required this.imperial, required this.metric});
+  const _$_Weight(
+      {@HiveField(0) required this.imperial,
+      @HiveField(1) required this.metric});
 
   factory _$_Weight.fromJson(Map<String, dynamic> json) =>
       _$$_WeightFromJson(json);
 
   @override
+  @HiveField(0)
   final String imperial;
   @override
+  @HiveField(1)
   final String metric;
 
   @override
@@ -146,14 +153,16 @@ class _$_Weight implements _Weight {
 
 abstract class _Weight implements Weight {
   const factory _Weight(
-      {required final String imperial,
-      required final String metric}) = _$_Weight;
+      {@HiveField(0) required final String imperial,
+      @HiveField(1) required final String metric}) = _$_Weight;
 
   factory _Weight.fromJson(Map<String, dynamic> json) = _$_Weight.fromJson;
 
   @override
+  @HiveField(0)
   String get imperial;
   @override
+  @HiveField(1)
   String get metric;
   @override
   @JsonKey(ignore: true)

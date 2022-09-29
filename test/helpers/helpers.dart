@@ -7,10 +7,12 @@
 
 import 'package:flutter_complete/api/api.dart';
 import 'package:flutter_complete/base/credentials.dart';
+import 'package:flutter_complete/breeds/repository/breed_repository.dart';
 import 'package:flutter_complete/di/di.dart';
 import 'package:flutter_complete/utils/logger/logger.dart';
 
 import '../fakes/fake_api.dart';
+import '../fakes/fake_repository.dart';
 
 export 'pump_app.dart';
 
@@ -21,9 +23,10 @@ Future<void> setupAllForTests() async {
 Future<void> _injectDefaultDependenciesForTests() async {
   locator.allowReassignment = true;
   locator
+    ..registerSingleton<AppLogger>(AppLogger())
     ..registerSingleton<Credentials>(credentials[Environment.test]!)
     ..registerSingleton<Api>(FakeApi(
       fakeBreedApi: FakeBreedApi(),
     ))
-    ..registerSingleton<AppLogger>(AppLogger());
+    ..registerSingleton<BreedRepository>(FakeBreedRepository());
 }

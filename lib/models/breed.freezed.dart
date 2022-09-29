@@ -20,10 +20,15 @@ Breed _$BreedFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Breed {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get cfaUrl => throw _privateConstructorUsedError;
+  @HiveField(3)
   Weight? get weight => throw _privateConstructorUsedError;
+  @HiveField(4)
   BreedImage? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,11 +41,11 @@ abstract class $BreedCopyWith<$Res> {
   factory $BreedCopyWith(Breed value, $Res Function(Breed) then) =
       _$BreedCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      String name,
-      String? cfaUrl,
-      Weight? weight,
-      BreedImage? image});
+      {@HiveField(0) String id,
+      @HiveField(1) String name,
+      @HiveField(2) String? cfaUrl,
+      @HiveField(3) Weight? weight,
+      @HiveField(4) BreedImage? image});
 
   $WeightCopyWith<$Res>? get weight;
   $BreedImageCopyWith<$Res>? get image;
@@ -115,11 +120,11 @@ abstract class _$$_BreedCopyWith<$Res> implements $BreedCopyWith<$Res> {
       __$$_BreedCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      String name,
-      String? cfaUrl,
-      Weight? weight,
-      BreedImage? image});
+      {@HiveField(0) String id,
+      @HiveField(1) String name,
+      @HiveField(2) String? cfaUrl,
+      @HiveField(3) Weight? weight,
+      @HiveField(4) BreedImage? image});
 
   @override
   $WeightCopyWith<$Res>? get weight;
@@ -171,27 +176,33 @@ class __$$_BreedCopyWithImpl<$Res> extends _$BreedCopyWithImpl<$Res>
 
 /// @nodoc
 
+@HiveType(typeId: 0, adapterName: 'BreedDataAdapter')
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_Breed implements _Breed {
   const _$_Breed(
-      {required this.id,
-      required this.name,
-      required this.cfaUrl,
-      required this.weight,
-      required this.image});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.name,
+      @HiveField(2) required this.cfaUrl,
+      @HiveField(3) required this.weight,
+      @HiveField(4) required this.image});
 
   factory _$_Breed.fromJson(Map<String, dynamic> json) =>
       _$$_BreedFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
   final String? cfaUrl;
   @override
+  @HiveField(3)
   final Weight? weight;
   @override
+  @HiveField(4)
   final BreedImage? image;
 
   @override
@@ -236,23 +247,28 @@ class _$_Breed implements _Breed {
 
 abstract class _Breed implements Breed {
   const factory _Breed(
-      {required final String id,
-      required final String name,
-      required final String? cfaUrl,
-      required final Weight? weight,
-      required final BreedImage? image}) = _$_Breed;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String? cfaUrl,
+      @HiveField(3) required final Weight? weight,
+      @HiveField(4) required final BreedImage? image}) = _$_Breed;
 
   factory _Breed.fromJson(Map<String, dynamic> json) = _$_Breed.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
   String? get cfaUrl;
   @override
+  @HiveField(3)
   Weight? get weight;
   @override
+  @HiveField(4)
   BreedImage? get image;
   @override
   @JsonKey(ignore: true)

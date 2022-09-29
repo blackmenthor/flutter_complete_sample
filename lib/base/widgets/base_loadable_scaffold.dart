@@ -7,6 +7,7 @@ import 'package:flutter_complete/extensions/base_bloc_state_extension.dart';
 
 const kAppBarBottomHeight = 54.0;
 
+// TODO: CATCH DATA FROM STREAM INSTEAD
 class BaseLoadableScaffold<T, R extends BaseCubit<T>> extends StatelessWidget {
   const BaseLoadableScaffold({
     Key? key,
@@ -14,23 +15,32 @@ class BaseLoadableScaffold<T, R extends BaseCubit<T>> extends StatelessWidget {
     this.title,
     this.appBarBottom,
     this.appBarBottomHeight = kAppBarBottomHeight,
+    this.listener,
   }) : super(key: key);
 
-  final Widget Function(BuildContext, T) builder;
+  final Widget Function(BuildContext, T?) builder;
   final String? title;
   final Widget Function(BuildContext)? appBarBottom;
   final double appBarBottomHeight;
+  final Function(BaseCubitState)? listener;
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
         title: title,
-        appBarBottom: PreferredSize(
+        appBarBottom: appBarBottom == null
+            ? null
+            : PreferredSize(
           preferredSize: Size.fromHeight(appBarBottomHeight),
           child: appBarBottom!(context),
         ),
         builder: (ctx)
-          => BlocBuilder<R, BaseCubitState>(
+          => BlocConsumer<R, BaseCubitState>(
+            listener: (ctx, BaseCubitState state) {
+              if (listener != null) {
+                listener!(state);
+              }
+            },
             builder: (ctx, BaseCubitState state) {
               if (state.isLoading) {
                 return const Center(

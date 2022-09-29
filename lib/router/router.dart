@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete/base/widgets/base_scaffold.dart';
 import 'package:flutter_complete/breeds/breeds_list/view/breeds_list_page.dart';
-import 'package:flutter_complete/breeds/breeds_page/view/breeds_page.dart';
 import 'package:flutter_complete/extensions/context_extensions.dart';
-import 'package:flutter_complete/models/breed.dart';
+import 'package:flutter_complete/start/view/start_page.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
   routes: <GoRoute>[
     GoRoute(
       path: '/',
+      builder: (ctx, state) => const StartPage(),
+    ),
+    GoRoute(
+      path: '/breed',
       builder: (BuildContext context, GoRouterState state) {
         return const BreedsListPage();
       },
@@ -27,13 +30,6 @@ final GoRouter appRouter = GoRouter(
                 ),
               ),
             );
-            return BreedsPage(breed: Breed(
-              id: '1',
-              name: 'Angga',
-              cfaUrl: null,
-              image: null,
-              weight: null,
-            ));
           },
         ),
       ],
