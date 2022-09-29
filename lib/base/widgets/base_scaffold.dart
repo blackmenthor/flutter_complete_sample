@@ -1,53 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_complete/base/cubit/base_cubit.dart';
-import 'package:flutter_complete/base/cubit/states.dart';
-import 'package:flutter_complete/extensions/base_bloc_state_extension.dart';
 
-class BaseScaffold<T, R extends BaseCubit<T>> extends StatelessWidget {
+typedef Builder = Widget Function(BuildContext);
+
+class BaseScaffold extends StatelessWidget {
   const BaseScaffold({
     Key? key,
-    required this.title,
     required this.builder,
+    this.title,
+    this.appBarBottom,
   }) : super(key: key);
 
-  final String title;
-  final Widget Function(BuildContext, T) builder;
+  final String? title;
+  final PreferredSizeWidget? appBarBottom;
+  final Builder builder;
+
+  bool get withAppbar => title != null && appBarBottom != null;
+
+  PreferredSizeWidget? _buildAppbar(BuildContext context) {
+    if (!withAppbar) return null;
+    return AppBar(
+      title: title != null ? Text(
+        title!,
+      ) : null,
+      bottom: appBarBottom != null
+          ? appBarBottom!
+          : null,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          title,
-        ),
-      ),
-      body: BlocBuilder<R, BaseCubitState>(
-        builder: (ctx, BaseCubitState state) {
-          if (state.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (state.hasError) {
-            state = state as BaseCubitErrorState;
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ),
-                child: Text(
-                  state.error.userFriendlyMessage,
-                ),
-              ),
-            );
-          }
-
-          final data = (state as BaseCubitLoadedState<T>).data;
-          return builder(context, data);
-        },
-      ),
+      appBar: _buildAppbar(context),
+      body: builder(context),
     );
   }
 }

@@ -9,9 +9,18 @@ class BreedApi extends BaseApi<Breed> {
       serializer: Breed.serializer,
   );
 
-  Future<List<Breed>> getBreeds() async {
+  Future<List<Breed>> getBreeds({
+    String? query,
+  }) async {
+    final queryParams = <String, dynamic>{};
+    if (query != null) {
+      queryParams['q'] = query;
+    }
     return getList(
-      path: 'breeds',
+      path: (query?.isEmpty ?? true)
+          ? 'breeds'
+          : 'breeds/search',
+      queryParams: queryParams,
     );
   }
 
