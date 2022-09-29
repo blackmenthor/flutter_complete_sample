@@ -6,8 +6,8 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_complete/core/router/router.dart';
 import 'package:flutter_complete/l10n/l10n.dart';
-import 'package:flutter_complete/router/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {

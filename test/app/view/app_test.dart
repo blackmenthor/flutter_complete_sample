@@ -6,7 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter_complete/app/app.dart';
-import 'package:flutter_complete/breeds/breeds_list/view/breeds_list_page.dart';
+import 'package:flutter_complete/domain/breeds/breeds_list/view/breeds_list_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/helpers.dart';

@@ -7,9 +7,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_complete/app/app.dart';
-import 'package:flutter_complete/base/credentials.dart';
 import 'package:flutter_complete/bootstrap.dart';
-import 'package:flutter_complete/di/di.dart';
+import 'package:flutter_complete/core/credentials.dart';
+import 'package:flutter_complete/core/di/di.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

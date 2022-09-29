@@ -10,7 +10,6 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_complete/di/di.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override

@@ -1,6 +1,6 @@
-import 'package:flutter_complete/api/api.dart';
-import 'package:flutter_complete/api/domains/breed/breed_api.dart';
-import 'package:flutter_complete/models/breed.dart';
+import 'package:flutter_complete/core/api/api.dart';
+import 'package:flutter_complete/domain/breeds/api/breed_api.dart';
+import 'package:flutter_complete/domain/breeds/models/breed.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../helpers/test_data.dart';

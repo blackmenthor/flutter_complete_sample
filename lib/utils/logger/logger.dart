@@ -1,4 +1,4 @@
-import 'package:flutter_complete/di/di.dart';
+import 'package:flutter_complete/core/di/di.dart';
 import 'package:flutter_complete/utils/logger/console_logger.dart';
 
 abstract class BaseLogger {

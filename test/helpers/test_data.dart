@@ -1,6 +1,8 @@
-import 'package:flutter_complete/models/breed.dart';
-import 'package:flutter_complete/models/breed_image.dart';
-import 'package:flutter_complete/models/breed_weight.dart';
+
+
+import 'package:flutter_complete/domain/breeds/models/breed.dart';
+import 'package:flutter_complete/domain/breeds/models/breed_image.dart';
+import 'package:flutter_complete/domain/breeds/models/breed_weight.dart';
 
 const fakeBreed1 = Breed(
     id: 'BREED_1',
