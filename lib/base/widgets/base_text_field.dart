@@ -33,7 +33,6 @@ class _BaseTextFieldState extends State<BaseTextField> {
     _controller = widget.controller ?? TextEditingController();
     if (widget.onChanged != null) {
       _controller.addListener(() {
-        if (_controller.text.isEmpty) return;
         widget.onChanged!(_controller.text);
       });
     }

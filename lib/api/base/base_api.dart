@@ -36,7 +36,9 @@ class BaseApiRequestInfo {
     var ret = '';
     ret += '${type.name.toUpperCase()}: $path\n';
     ret += 'Query: $queryParams\n';
-    ret += 'Headers $header\n';
+    if (header != null) {
+      ret += 'Headers $header\n';
+    }
     if (body != null) {
       ret += 'Body: $body\n';
     }
@@ -175,9 +177,7 @@ class BaseApi<T extends ResponseObject> {
         );
         logger.i(message: '''
           [API] API call results
-          GET List: ${resolvePath(path: path)}
-          Query: $queryParams
-          Headers $headers
+          $requestInfo
           
           Response: ${response.data}
         ''');
