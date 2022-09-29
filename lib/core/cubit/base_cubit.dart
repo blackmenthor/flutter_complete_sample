@@ -9,8 +9,8 @@ abstract class BaseCubit<T> extends Cubit<BaseCubitState> {
     kickOff();
   }
 
-  void gotError(dynamic error) {
-    logger.e(error: error);
+  void gotError(dynamic error, StackTrace stackTrace) {
+    logger.e(error: error, stackTrace: stackTrace);
   }
 
   Future<void> kickOff() async {
@@ -20,11 +20,11 @@ abstract class BaseCubit<T> extends Cubit<BaseCubitState> {
       emit(
         BaseCubitLoadedState(data: resp),
       );
-    } on AppException catch (ex) {
-      gotError(ex);
+    } on AppException catch (ex, stackTrace) {
+      gotError(ex, stackTrace);
       emit(BaseCubitErrorState(error: ex));
-    } catch (ex) {
-      gotError(ex);
+    } catch (ex, stackTrace) {
+      gotError(ex, stackTrace);
       emit(
           BaseCubitErrorState(error: DefaultAppException(),),
       );

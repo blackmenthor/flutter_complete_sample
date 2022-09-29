@@ -17,6 +17,7 @@ abstract class BaseLogger {
 
   void e({
     required dynamic error,
+    required StackTrace stackTrace,
   });
 
 }
@@ -41,7 +42,8 @@ class AppLogger {
 
   void e({
     required dynamic error,
-  }) => loggers.forEach((e) => e.e(error: error));
+    required StackTrace stackTrace,
+  }) => loggers.forEach((e) => e.e(error: error, stackTrace: stackTrace));
 
 }
 

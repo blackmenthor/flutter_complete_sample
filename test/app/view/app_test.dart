@@ -6,7 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter_complete/app/app.dart';
-import 'package:flutter_complete/domain/breeds/breeds_list/view/breeds_list_page.dart';
+import 'package:flutter_complete/domain/start/view/start_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/helpers.dart';
@@ -17,7 +17,7 @@ void main() {
 
     testWidgets('renders CounterPage', (tester) async {
       await tester.pumpWidget(App());
-      expect(find.byType(BreedsListPage), findsOneWidget);
+      expect(find.byType(StartPage), findsOneWidget);
     });
   });
 }
