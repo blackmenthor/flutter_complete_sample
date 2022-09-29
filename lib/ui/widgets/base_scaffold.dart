@@ -8,11 +8,13 @@ class BaseScaffold extends StatelessWidget {
     required this.builder,
     this.title,
     this.appBarBottom,
+    this.floatingActionButton,
   }) : super(key: key);
 
   final String? title;
   final PreferredSizeWidget? appBarBottom;
   final Builder builder;
+  final Widget? floatingActionButton;
 
   bool get withAppbar => title != null && appBarBottom != null;
 
@@ -33,6 +35,8 @@ class BaseScaffold extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppbar(context),
       body: builder(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: floatingActionButton,
     );
   }
 }

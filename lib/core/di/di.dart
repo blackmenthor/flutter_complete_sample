@@ -1,3 +1,4 @@
+import 'package:flutter_complete/app/cubit/app_cubit.dart';
 import 'package:flutter_complete/core/api/api.dart';
 import 'package:flutter_complete/core/credentials.dart';
 import 'package:flutter_complete/core/hive/hive_service.dart';
@@ -22,7 +23,8 @@ class DependencyInjection {
         );
       })
       ..registerSingleton<HiveService>(HiveService())
-      ..registerSingleton<BreedRepository>(BreedRepository());
+      ..registerSingleton<BreedRepository>(BreedRepository())
+      ..registerSingleton<AppCubit>(AppCubit());
   }
 
 }

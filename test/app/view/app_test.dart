@@ -16,7 +16,7 @@ void main() {
     setUpAll(setupAllForTests);
 
     testWidgets('renders CounterPage', (tester) async {
-      await tester.pumpWidget(const App());
+      await tester.pumpWidget(App());
       expect(find.byType(BreedsListPage), findsOneWidget);
     });
   });

@@ -15,6 +15,7 @@ class BaseLoadableScaffold<T, R extends BaseCubit<T>> extends StatelessWidget {
     this.appBarBottom,
     this.appBarBottomHeight = kAppBarBottomHeight,
     this.listener,
+    this.floatingActionButton,
   }) : super(key: key);
 
   final Widget Function(BuildContext, T?) builder;
@@ -22,11 +23,13 @@ class BaseLoadableScaffold<T, R extends BaseCubit<T>> extends StatelessWidget {
   final Widget Function(BuildContext)? appBarBottom;
   final double appBarBottomHeight;
   final Function(BaseCubitState)? listener;
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
         title: title,
+        floatingActionButton: floatingActionButton,
         appBarBottom: appBarBottom == null
             ? null
             : PreferredSize(

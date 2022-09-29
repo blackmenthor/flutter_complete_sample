@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_complete/app/cubit/app_cubit.dart';
+import 'package:flutter_complete/app/cubit/state.dart';
 import 'package:flutter_complete/core/extensions/context_extensions.dart';
 import 'package:flutter_complete/domain/breeds/breeds_list/cubit/breeds_cubit.dart';
 import 'package:flutter_complete/domain/breeds/models/breed.dart';
@@ -19,6 +21,18 @@ class BreedsListPage extends StatelessWidget {
         create: (_) => BreedsCubit(),
         child: BaseLoadableScaffold<List<Breed?>, BreedsCubit>(
           title: 'Breeds Page',
+          floatingActionButton: BlocBuilder<AppCubit, AppState>(
+            builder: (ctx, state)
+              => FloatingActionButton(
+                onPressed: () => context.read<AppCubit>().toggleTheme(),
+                child: Icon(
+                  state.isLightTheme
+                      ? Icons.shield_moon
+                      : Icons.sunny,
+                  color: context.colors.error,
+                ),
+              ),
+          ),
           appBarBottom: (ctx) {
             return Padding(
               padding: const EdgeInsets.all(16),
