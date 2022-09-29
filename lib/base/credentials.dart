@@ -1,4 +1,5 @@
 enum Environment {
+  test,
   dev,
   staging,
   prod
@@ -13,6 +14,13 @@ abstract class Credentials {
 
   final String baseEndpoint;
   final Environment env;
+}
+
+class TestCredentials extends Credentials {
+  TestCredentials() : super(
+    baseEndpoint: 'https://api.thecatapi.com/v1/',
+    env: Environment.test,
+  );
 }
 
 class DevCredentials extends Credentials {
@@ -37,6 +45,7 @@ class ProdCredentials extends Credentials {
 }
 
 final credentials = {
+  Environment.test: TestCredentials(),
   Environment.dev: DevCredentials(),
   Environment.staging: StagingCredentials(),
   Environment.prod: ProdCredentials(),

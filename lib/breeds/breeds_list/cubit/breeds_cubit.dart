@@ -10,7 +10,7 @@ class BreedsCubit extends BaseCubit<List<Breed>> {
 
   final api = locator.get<Api>();
 
-  BreedApi get breedApi => api.breedApi;
+  BreedApi get breedApi => api.breed;
 
   @override
   Future<List<Breed>> loadData() => breedApi.getBreeds();

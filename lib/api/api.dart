@@ -20,4 +20,6 @@ class Api {
 
   final BreedApi breedApi;
 
+  BreedApi get breed => breedApi;
+
 }
