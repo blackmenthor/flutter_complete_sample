@@ -1,5 +1,6 @@
 import 'package:flutter_complete/api/api.dart';
 import 'package:flutter_complete/base/credentials.dart';
+import 'package:flutter_complete/utils/logger/logger.dart';
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;
@@ -16,7 +17,8 @@ class DependencyInjection {
         return Api.create(
           credentials: credentials,
         );
-      });
+      })
+      ..registerSingleton<AppLogger>(AppLogger());
   }
 
 }

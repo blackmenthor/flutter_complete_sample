@@ -2,11 +2,48 @@ import 'dart:convert';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_complete/api/base/base_exception.dart';
 import 'package:flutter_complete/api/base/response_object.dart';
 import 'package:flutter_complete/extensions/response_extensions.dart';
 import 'package:flutter_complete/utils/constants.dart';
+import 'package:flutter_complete/utils/logger/logger.dart';
+
+enum BaseApiRequestType {
+  get,
+  getList,
+  post,
+  put,
+  delete
+}
+
+class BaseApiRequestInfo {
+  BaseApiRequestInfo({
+      required this.type,
+      required this.path,
+      this.queryParams,
+      this.header,
+      this.body,
+  });
+
+  final BaseApiRequestType type;
+  final String path;
+  final Map<String, dynamic>? queryParams;
+  final Map<String, dynamic>? header;
+  final Map<String, dynamic>? body;
+
+  @override
+  String toString() {
+    var ret = '';
+    ret += '${type.name.toUpperCase()}: $path\n';
+    ret += 'Query: $queryParams\n';
+    ret += 'Headers $header\n';
+    if (body != null) {
+      ret += 'Body: $body\n';
+    }
+    return ret += 'ts: ${DateTime.now().millisecondsSinceEpoch}';
+  }
+
+}
 
 class BaseApi<T extends ResponseObject> {
 
@@ -37,6 +74,7 @@ class BaseApi<T extends ResponseObject> {
     // check if internet is active or not
     final connectivityResult = await connectivity.checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
+
       throw NoInternetException();
     }
 
@@ -66,9 +104,20 @@ class BaseApi<T extends ResponseObject> {
     if (headers?.isNotEmpty ?? false) {
       requestHeaders.addAll(headers!);
     }
+    final requestInfo = BaseApiRequestInfo(
+      type: BaseApiRequestType.get,
+      path: resolvePath(path: path),
+      queryParams: queryParams,
+      header: headers,
+    );
 
     return _call<T>(
       body: () async {
+        logger.i(message: '''
+          [API] Fetching API Call
+          $requestInfo
+        ''');
+
         final response = await dio.get<String>(
           resolvePath(path: path),
           queryParameters: queryParams,
@@ -76,6 +125,12 @@ class BaseApi<T extends ResponseObject> {
             headers: requestHeaders,
           ),
         );
+        logger.i(message: '''
+          [API] API call results
+          $requestInfo
+          
+          Response: ${response.data}
+        ''');
         response.checkIfCallIsSuccessful();
 
         final jsonString = response.data?.toString();
@@ -96,8 +151,21 @@ class BaseApi<T extends ResponseObject> {
       requestHeaders.addAll(headers!);
     }
 
+    final requestInfo = BaseApiRequestInfo(
+      type: BaseApiRequestType.getList,
+      path: resolvePath(path: path),
+      queryParams: queryParams,
+      header: headers,
+    );
+
     return _call<List<T>>(
       body: () async {
+        logger.i(message: '''
+          [API] Fetching API Call
+          
+          $requestInfo
+        ''');
+
         final response = await dio.get<String>(
           resolvePath(path: path),
           queryParameters: queryParams,
@@ -105,6 +173,14 @@ class BaseApi<T extends ResponseObject> {
             headers: requestHeaders,
           ),
         );
+        logger.i(message: '''
+          [API] API call results
+          GET List: ${resolvePath(path: path)}
+          Query: $queryParams
+          Headers $headers
+          
+          Response: ${response.data}
+        ''');
         response.checkIfCallIsSuccessful();
 
         final jsonString = response.data?.toString();
@@ -133,8 +209,22 @@ class BaseApi<T extends ResponseObject> {
       requestHeaders.addAll(headers!);
     }
 
+    final requestInfo = BaseApiRequestInfo(
+      type: BaseApiRequestType.post,
+      path: resolvePath(path: path),
+      queryParams: queryParams,
+      header: headers,
+      body: body,
+    );
+
     return _call<T>(
       body: () async {
+        logger.i(message: '''
+          [API] Fetching API Call
+          
+          $requestInfo
+        ''');
+
         final response = await dio.post<String>(
           resolvePath(path: path),
           queryParameters: queryParams,
@@ -143,6 +233,13 @@ class BaseApi<T extends ResponseObject> {
             headers: requestHeaders,
           ),
         );
+        logger.i(message: '''
+          [API] API call results
+          
+          $requestInfo
+          
+          Response: ${response.data}
+        ''');
         response.checkIfCallIsSuccessful();
 
         final jsonString = response.data?.toString();
@@ -164,8 +261,22 @@ class BaseApi<T extends ResponseObject> {
       requestHeaders.addAll(headers!);
     }
 
+    final requestInfo = BaseApiRequestInfo(
+      type: BaseApiRequestType.put,
+      path: resolvePath(path: path),
+      queryParams: queryParams,
+      header: headers,
+      body: body,
+    );
+
     return _call<T>(
       body: () async {
+        logger.i(message: '''
+          [API] Fetching API Call
+          
+          $requestInfo
+        ''');
+
         final response = await dio.put<String>(
           resolvePath(path: path),
           queryParameters: queryParams,
@@ -174,6 +285,13 @@ class BaseApi<T extends ResponseObject> {
             headers: requestHeaders,
           ),
         );
+        logger.i(message: '''
+          [API] API call results
+          
+          $requestInfo
+          
+          Response: ${response.data}
+        ''');
         response.checkIfCallIsSuccessful();
 
         final jsonString = response.data?.toString();
@@ -194,8 +312,21 @@ class BaseApi<T extends ResponseObject> {
       requestHeaders.addAll(headers!);
     }
 
+    final requestInfo = BaseApiRequestInfo(
+      type: BaseApiRequestType.delete,
+      path: resolvePath(path: path),
+      queryParams: queryParams,
+      header: headers,
+    );
+
     return _call<T>(
       body: () async {
+        logger.i(message: '''
+          [API] Fetching API Call
+          
+          $requestInfo
+        ''');
+
         final response = await dio.delete<String>(
           resolvePath(path: path),
           queryParameters: queryParams,
@@ -203,6 +334,14 @@ class BaseApi<T extends ResponseObject> {
             headers: requestHeaders,
           ),
         );
+
+        logger.i(message: '''
+          [API] API call results
+          
+          $requestInfo
+          
+          Response: ${response.data}
+        ''');
         response.checkIfCallIsSuccessful();
 
         final jsonString = response.data?.toString();

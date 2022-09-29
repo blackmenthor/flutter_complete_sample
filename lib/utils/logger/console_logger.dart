@@ -1,0 +1,20 @@
+import 'package:flutter_complete/utils/logger/logger.dart';
+import 'package:logger/logger.dart';
+
+class ConsoleLogger extends BaseLogger {
+
+  final _logger = Logger();
+
+  @override
+  void d({required String message}) => _logger.d(message);
+
+  @override
+  void e({required dynamic error}) => _logger.e(error.toString(), error);
+
+  @override
+  void i({required String message}) => _logger.i(message);
+
+  @override
+  void v({required String message}) => _logger.v(message);
+
+}
