@@ -15,7 +15,7 @@ void main() {
   group('App', () {
     setUpAll(setupAllForTests);
 
-    testWidgets('renders CounterPage', (tester) async {
+    testWidgets('renders StartPage', (tester) async {
       await tester.pumpWidget(App());
       expect(find.byType(StartPage), findsOneWidget);
     });
